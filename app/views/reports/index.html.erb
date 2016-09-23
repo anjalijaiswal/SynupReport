@@ -1,0 +1,33 @@
+<div class="container">
+  <table class="table table-condensed">
+    <h2>
+      <tr>
+        <td><%= @locations %></td>
+      </tr>
+    </h2>
+    <tr>
+      <td><%= @new_locations %></td>
+    </tr>
+    <tr>
+      <td><%= @archived_locations %></td>
+    </tr>
+    <tr>
+      <table class="table table-condensed">
+        <% @top_states.reverse.each do |state_count| %>
+          <h2>
+            <tr>
+              <th> <%= calculate_percentage(state_count[1], @locations) %> %</th>
+              <th><%= state_count[0][0].name %></th>
+            </tr>
+          </h2>
+          <% @top_sub_cat[state_count[0][0].id].reverse.each do |cat_count| %>
+            <tr>
+              <th><%= calculate_percentage(cat_count[1], @sub_cat_count[state_count[0][0].id]) %> % </th>
+              <th><%= cat_count[0].first.name %></th>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </tr>
+  </table>
+</div>
